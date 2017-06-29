@@ -13,6 +13,7 @@ const app = {
         item.textContent = flick.name
 
         const favoriteButton = document.createElement('button')
+        favoriteButton.setAttribute('id', 'favButton')
         favoriteButton.textContent = 'Favorite!'
         favoriteButton.addEventListener('click', this.handleFavoriteButton.bind(this))
         item.appendChild(favoriteButton)
