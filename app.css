@@ -18,23 +18,21 @@ h1 small{
     margin-left: 2rem;
 }
 
-#upButton{
-    padding:1rem;
-    background-color: gray;
-    
-}
-
 .list-container{
     background-color: whitesmoke;
 }
 
-#downButton{
-    padding:1rem;
-    background-color: grey;
-    
+#flick-list{
+    margin-bottom: 0;
 }
 
-#removeButton{
-    padding:1rem;
-    background-color: pink;
+.flick .button-group{
+    margin-bottom: 0;
+}
+
+.flick-name{
+    padding: 0 0.5rem 0 0.75rem;
+}
+.flick .button-group .button{
+    margin: 0; 
 }

@@ -15,7 +15,7 @@ const app = {
         item.dataset.id = flick.id
         item.textContent = flick.name
 
-        const favoriteButton = document.createElement('button')
+        /*const favoriteButton = document.createElement('button')
         const listUpButton = document.createElement('button')
         const listDownButton = document.createElement('button')
         const removeButton = document.createElement('button')
@@ -38,7 +38,7 @@ const app = {
         removeButton.setAttribute('id', 'removeButton')
         removeButton.textContent = 'Remove'
         removeButton.addEventListener('click', this.handleRemoveButton.bind(this))
-        item.appendChild(removeButton)
+        item.appendChild(removeButton)*/
 
         return item
     },
@@ -49,6 +49,7 @@ const app = {
         const flick = {
             id: this.max + 1,
             name: f.flickName.value,
+            fav: false
         }
         //console.log(flick)
 
@@ -64,6 +65,7 @@ const app = {
     handleFavoriteButton: function(ev){
         ev.preventDefault()
         const b = ev.target
+        
     },
 
     handleUpButton: function(ev){
@@ -81,7 +83,6 @@ const app = {
         const b = ev.target
     },
 }
-
 
 app.init({
     formSelector: 'form#flick-form',
