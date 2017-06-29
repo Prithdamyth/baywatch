@@ -12,12 +12,6 @@ h1 small{
     font-family: 'Indie Flower', sans-serif;
 }
 
-#favButton{
-    padding:1rem;
-    background-color: Yellow;
-    margin-left: 2rem;
-}
-
 .list-container{
     background-color: whitesmoke;
 }
@@ -30,9 +24,17 @@ h1 small{
     margin-bottom: 0;
 }
 
+.template{
+    display: none
+}
+
+.flick.fav{
+    background-color: turquoise;
+}
+
 .flick-name{
-    padding: 0 0.5rem 0 0.75rem;
+    padding: 0 0.75rem;
 }
 .flick .button-group .button{
-    margin: 0; 
+    margin: 0.5px; 
 }

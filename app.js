@@ -3,6 +3,7 @@ const app = {
         this.flicks = []
         this.max = 0;
         this.list = document.querySelector(selectors.listSelector)
+        this.template = document.querySelector(selectors.templateSelector)
 
 
         document
@@ -11,34 +12,13 @@ const app = {
     },
 
     renderListItem: function(flick){
-        const item = document.createElement('li')
+        const item = this.template.cloneNode(true)
+        item.classList.remove('template')
         item.dataset.id = flick.id
-        item.textContent = flick.name
+        item.querySelector(".flick-name").textContent = flick.name
 
-        /*const favoriteButton = document.createElement('button')
-        const listUpButton = document.createElement('button')
-        const listDownButton = document.createElement('button')
-        const removeButton = document.createElement('button')
-
-        favoriteButton.setAttribute('id', 'favButton')
-        favoriteButton.textContent = 'Favorite!'
-        favoriteButton.addEventListener('click', this.handleFavoriteButton.bind(this))
-        item.appendChild(favoriteButton)
-
-        listUpButton.setAttribute('id', 'upButton')
-        listUpButton.textContent = 'Up'
-        listUpButton.addEventListener('click', this.handleUpButton.bind(this))
-        item.appendChild(listUpButton)
-
-        listDownButton.setAttribute('id', 'downButton')
-        listDownButton.textContent = 'Down'
-        listDownButton.addEventListener('click', this.handleDownButton.bind(this))
-        item.appendChild(listDownButton)
-
-        removeButton.setAttribute('id', 'removeButton')
-        removeButton.textContent = 'Remove'
-        removeButton.addEventListener('click', this.handleRemoveButton.bind(this))
-        item.appendChild(removeButton)*/
+        item.querySelector('button.del').addEventListener('click', this.removeFlick.bind(this, flick)) //bind will pass down 'flick' to the remove function
+        item.querySelector('button.fav').addEventListener('click', this.favFlick.bind(this, flick))
 
         return item
     },
@@ -49,7 +29,7 @@ const app = {
         const flick = {
             id: this.max + 1,
             name: f.flickName.value,
-            fav: false
+            fav: false,
         }
         //console.log(flick)
 
@@ -62,29 +42,38 @@ const app = {
         f.reset()
     },
 
-    handleFavoriteButton: function(ev){
-        ev.preventDefault()
-        const b = ev.target
+    removeFlick: function(flick, ev){
+        //Remove from the DOM
+        const listItem = ev.target.closest('.flick')
+        listItem.remove()
+
+        //Remove from the array
+        const i = this.flicks.indexOf(flick)
+
+        this.flicks.splice(i, 1); //remove 1 thing
+    },
+
+    favFlick(flick, ev){
+        const listItem = ev.target.closest('.flick')
+        flick.fav = !flick.fav
+        //flick.fav = listItem.classList.toggle('fav') --> Another option for this
+        if(flick.fav){
+            listItem.classList.add('fav')
+        }
+        else{
+            listItem.classList.remove('fav')
+        }
         
-    },
-
-    handleUpButton: function(ev){
-        ev.preventDefault()
-        const b = ev.target
-    },
-
-    handleDownButton: function(ev){
-        ev.preventDefault()
-        const b = ev.target
-    },
-
-    handleRemoveButton: function(ev){
-        ev.preventDefault()
-        const b = ev.target
-    },
+    }
 }
 
 app.init({
     formSelector: 'form#flick-form',
-    listSelector: '#flick-list'
+    listSelector: '#flick-list',
+    templateSelector: '.flick.template'
 })
+
+//Move up --> Use insert above and use previous element (previous sibling or prev element sibling)
+//      For in the array use temp variable and swap
+
+//Move down --> get the one underneath and move that down (next sibling function)
