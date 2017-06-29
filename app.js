@@ -3,6 +3,8 @@ const app = {
         this.flicks = []
         this.max = 0;
         this.list = document.querySelector(selectors.listSelector)
+
+
         document
             .querySelector(selectors.formSelector)
             .addEventListener('submit', this.handleSubmit.bind(this))
@@ -13,10 +15,29 @@ const app = {
         item.textContent = flick.name
 
         const favoriteButton = document.createElement('button')
+        const listUpButton = document.createElement('button')
+        const listDownButton = document.createElement('button')
+        const removeButton = document.createElement('button')
+
         favoriteButton.setAttribute('id', 'favButton')
         favoriteButton.textContent = 'Favorite!'
         favoriteButton.addEventListener('click', this.handleFavoriteButton.bind(this))
         item.appendChild(favoriteButton)
+
+        listUpButton.setAttribute('id', 'upButton')
+        listUpButton.textContent = 'Up'
+        listUpButton.addEventListener('click', this.handleUpButton.bind(this))
+        item.appendChild(listUpButton)
+
+        listDownButton.setAttribute('id', 'downButton')
+        listDownButton.textContent = 'Down'
+        listDownButton.addEventListener('click', this.handleDownButton.bind(this))
+        item.appendChild(listDownButton)
+
+        removeButton.setAttribute('id', 'removeButton')
+        removeButton.textContent = 'Remove'
+        removeButton.addEventListener('click', this.handleRemoveButton.bind(this))
+        item.appendChild(removeButton)
 
         return item
     },
@@ -36,11 +57,28 @@ const app = {
         this.list.appendChild(listItem)
 
         this.max++
+        f.reset()
     },
 
     handleFavoriteButton: function(ev){
         ev.preventDefault()
-        const f = ev.target
+        const b = ev.target
+        b.setBackgroundColor = blue;
+    },
+
+    handleUpButton: function(ev){
+        ev.preventDefault()
+        const b = ev.target
+    },
+
+    handleDownButton: function(ev){
+        ev.preventDefault()
+        const b = ev.target
+    },
+
+    handleRemoveButton: function(ev){
+        ev.preventDefault()
+        const b = ev.target
     },
 }
 

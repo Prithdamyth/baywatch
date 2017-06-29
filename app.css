@@ -1,5 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
+body{
+    background: url('http://thehypedgeek.com/wp-content/uploads/2017/06/Michael-Bay.jpg') no-repeat center fixed;
+    background-size: cover;
+
+}
+
+h1 small{
+    color: whiteSmoke;
+    font-size : 80%;
+    font-family: 'Indie Flower', sans-serif;
+}
+
 #favButton{
     padding:1rem;
     background-color: Yellow;
-    margin-left: 1rem;
+    margin-left: 64%;
+}
+
+#upButton{
+    padding:1rem;
+    background-color: gray;
+    
+}
+
+.list-container{
+    background-color: whitesmoke;
+}
+
+#downButton{
+    padding:1rem;
+    background-color: grey;
+    
+}
+
+#removeButton{
+    padding:1rem;
+    background-color: pink;
 }
