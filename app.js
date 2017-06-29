@@ -12,6 +12,7 @@ const app = {
 
     renderListItem: function(flick){
         const item = document.createElement('li')
+        item.dataset.id = flick.id
         item.textContent = flick.name
 
         const favoriteButton = document.createElement('button')
@@ -51,10 +52,10 @@ const app = {
         }
         //console.log(flick)
 
-        this.flicks.push(flick)
+        this.flicks.unshift(flick) //Adds to the front of the array
 
         const listItem = this.renderListItem(flick)
-        this.list.appendChild(listItem)
+        this.list.insertBefore(listItem, this.list.firstElementChild)
 
         this.max++
         f.reset()
@@ -63,7 +64,6 @@ const app = {
     handleFavoriteButton: function(ev){
         ev.preventDefault()
         const b = ev.target
-        b.setBackgroundColor = blue;
     },
 
     handleUpButton: function(ev){
