@@ -111,8 +111,3 @@ app.init({
     listSelector: '#flick-list',
     templateSelector: '.flick.template'
 })
-
-//Move up --> Use insert above and use previous element (previous sibling or prev element sibling)
-//      For in the array use temp variable and swap
-
-//Move down --> get the one underneath and move that down (next sibling function)
