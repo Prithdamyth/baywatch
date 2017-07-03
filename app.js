@@ -68,7 +68,9 @@ const app = {
     },
 
     moveFlickUp(flick, ev){
+        const listItem = ev.target.closest('.flick')
         
+        this.list.insertBefore(listItem, listItem.previousSibling)
     }
 }
 
