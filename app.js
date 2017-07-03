@@ -70,14 +70,39 @@ const app = {
 
     moveFlickUp(flick, ev){
         const listItem = ev.target.closest('.flick')
+        const i = this.flicks.indexOf(flick)
+        //update the array
+        if(i === 0){
+            console.log("Can't move list item any higher")
+        }
+        else{
+            const temp = this.flicks[i]
+            this.flicks[i] = this.flicks[i-1]
+            this.flicks[i-1] = temp
+
+            //Move list item in DOM
+            this.list.insertBefore(listItem, listItem.previousSibling)     
+        }
         
-        this.list.insertBefore(listItem, listItem.previousSibling)
     },
 
     moveFlickDown(flick, ev){
         const listItem = ev.target.closest('.flick')
+        const i = this.flicks.indexOf(flick)
         
-        this.list.insertBefore(listItem.nextSibling, listItem)
+        if(i === this.flicks.length - 1){
+            console.log("Can't move list item any lower")
+        }
+        else{
+            const temp = this.flicks[i]
+            this.flicks[i] = this.flicks[i+1]
+            this.flicks[i+1] = temp
+
+            this.list.insertBefore(listItem.nextSibling, listItem) //Move list Item in DOM     
+        }
+        
+        
+        
     }
 }
 
