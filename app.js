@@ -20,6 +20,7 @@ const app = {
         item.querySelector('button.del').addEventListener('click', this.removeFlick.bind(this, flick)) //bind will pass down 'flick' to the remove function
         item.querySelector('button.fav').addEventListener('click', this.favFlick.bind(this, flick))
         item.querySelector('button.up').addEventListener('click', this.moveFlickUp.bind(this, flick))
+        item.querySelector('button.down').addEventListener('click', this.moveFlickDown.bind(this, flick))
 
         return item
     },
@@ -71,6 +72,12 @@ const app = {
         const listItem = ev.target.closest('.flick')
         
         this.list.insertBefore(listItem, listItem.previousSibling)
+    },
+
+    moveFlickDown(flick, ev){
+        const listItem = ev.target.closest('.flick')
+        
+        this.list.insertBefore(listItem.nextSibling, listItem)
     }
 }
 
