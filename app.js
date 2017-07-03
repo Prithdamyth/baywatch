@@ -19,6 +19,7 @@ const app = {
 
         item.querySelector('button.del').addEventListener('click', this.removeFlick.bind(this, flick)) //bind will pass down 'flick' to the remove function
         item.querySelector('button.fav').addEventListener('click', this.favFlick.bind(this, flick))
+        item.querySelector('button.up').addEventListener('click', this.moveFlickUp.bind(this, flick))
 
         return item
     },
@@ -63,6 +64,10 @@ const app = {
         else{
             listItem.classList.remove('fav')
         }
+        
+    },
+
+    moveFlickUp(flick, ev){
         
     }
 }
