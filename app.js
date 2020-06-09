@@ -1,5 +1,5 @@
-const app = {
-    init: function(selectors){
+class App {
+    constructor(selectors){
         this.flicks = []
         this.max = 0;
         this.list = document.querySelector(selectors.listSelector)
@@ -13,7 +13,7 @@ const app = {
             .addEventListener('submit', this.handleSubmit.bind(this))
 			
 		this.load()
-    },
+    }
 	
 	load() {
 		//Load json from localstorage
@@ -25,14 +25,14 @@ const app = {
 			flicksArr.reverse()
 			.map(this.addFlick.bind(this))
 		}
-	},
+	}
 
 	save() {
 		localStorage.setItem('flicks', JSON.stringify(this.flicks));
-	},
+	}
 	
 	//Can also just do renderListItem(flick){}
-    renderListItem: function(flick){
+    renderListItem(flick){
         const item = this.template.cloneNode(true)
         item.classList.remove('template')
         item.dataset.id = flick.id
@@ -57,7 +57,7 @@ const app = {
 
 
         return item
-    },
+    }
 	
 	addFlick(flick) {
 		this.flicks.unshift(flick) //Adds to the front of the array
@@ -70,9 +70,9 @@ const app = {
 		}
 		
 		this.save()
-	},
+	}
 
-    handleSubmit: function(ev) {
+    handleSubmit(ev) {
         ev.preventDefault()
         const f = ev.target
         const flick = {
@@ -85,15 +85,15 @@ const app = {
 		this.addFlick(flick)
 		
 		f.reset() // reset the form after handling submit
-    },
+    }
 
 	saveOnEnter(flick, listItem, ev) {
 		if(ev.key === 'Enter'){
 			this.toggleEditable(flick, listItem)
 		}
-	},
+	}
 	
-	toggleEditable: function(flick, listItem, ev){
+	toggleEditable(flick, listItem, ev){
 		const listItemName = listItem.querySelector('.flick-name')
 		//const btn = ev.currentTarget //need to use currentTarget because just using target may get the icon instead
 		const btn = listItem.querySelector('button.edit')
@@ -119,9 +119,9 @@ const app = {
 			btn.classList.add('success')
 		}
 		
-	},
+	}
 	
-    removeFlick: function(flick, ev){
+    removeFlick(flick, ev){
         //Remove from the DOM
         const listItem = ev.target.closest('.flick') //checks the ancestors for a match
         listItem.remove()
@@ -132,7 +132,7 @@ const app = {
         this.flicks.splice(i, 1); //remove 1 thing
 		
 		this.save()
-    },
+    }
 
     favFlick(flick, ev){
         const listItem = ev.target.closest('.flick')
@@ -147,8 +147,8 @@ const app = {
 		// or just flick.fav = listItem.classList.toggle('fav')
 		
 		this.save()
-        
-    },
+       
+    }
 
     moveFlickUp(flick, ev){
         const listItem = this.list.querySelector(`[data-id="${flick.id}"]`)
@@ -168,7 +168,7 @@ const app = {
 			this.save()
         }
         
-    },
+    }
 
     moveFlickDown(flick, ev){
         const listItem = ev.target.closest('.flick')
@@ -188,11 +188,10 @@ const app = {
         }
         
         
-        
     }
 }
 
-app.init({
+const app = new App({
     formSelector: 'form#flick-form',
     listSelector: '#flick-list',
     templateSelector: '.flick.template'
